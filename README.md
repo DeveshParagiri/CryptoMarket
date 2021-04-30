@@ -12,3 +12,11 @@ pip3 install -r requirements.txt
 ```bash
 python3 app.py
 ```
+## Home Page
+![landing page image](/img/landingpage.png)
+
+## Market Page
+![market page image](/img/marketpage.png)
+
+## Links Page
+![links page image](/img/linkspage.png)
