@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('home_page') }}">CryptoHub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('market_page') }}">Market</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('helpfulinks_page') }}">Helpful Links <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1 class="heading">Click away!</h1>
+
+<div class="box">
+    <div class="grid-container">
+        <div class="grid-item">
+            <a class="btn btn-info btn-lg" href="https://www.binance.com/en" target="_blank"><h1>Binance</h1></a>
+        </div>
+        <div class="grid-item">
+            <a class="btn btn-info btn-lg" href="https://wazirx.com/" target="_blank"><h1>Wazirx</h1></a>
+        </div>
+        <div class="grid-item">
+            <a class="btn btn-info btn-lg" href="https://mycrypto.com/" target="_blank"><h1>myCrypto</h1></a>
+        </div>
+        <div class="grid-item">
+            <a class="btn btn-info btn-lg" href="https://bitcoin.org/bitcoin.pdf" target="_blank"><h1>About BTC</h1></a>
+        </div>
+        <div class="grid-item">
+            <a class="btn btn-info btn-lg" href="https://ethereum.org/en/whitepaper/" target="_blank"><h1>About ETH</h1></a>
+        </div>
+        <div class="grid-item">
+            <a class="btn btn-info btn-lg" href="https://www.reddit.com/r/CryptoCurrency/" target="_blank"><h1>r/Cryptocurrency</h1></a>
+        </div>  
+</div>
+<style>
+    .heading {
+      border: 1px; 
+      padding: 35px 70px;
+    }
+    .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 40px;
+    }
+    .grid-item {
+    padding: 100px;
+    font-size: 30px;
+    text-align: center;
+    }
+</style>
+{% endblock %}

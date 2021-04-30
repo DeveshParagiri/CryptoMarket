@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .heading {
+      border: 1px; 
+      padding: 100px 50px;
+    }
+    .heading1 {
+      border: 1px; 
+      padding: 35px 70px;
+    }
+    .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 100px;
+    }
+    .grid-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('home_page') }}">CryptoHub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('market_page') }}">Market <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('helpfulinks_page') }}">Helpful Links</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h1 class="heading1">Top 5's</h1>
+<div class="grid-container">
+    <div class="grid-item">
+        <h1>Top 5 Crypto's 90d % change</h1>
+        <canvas id="barChart" width="800" height="400" style="margin-top: 20px; margin-bottom: 50px"></canvas>
+    </div>
+    <div class="grid-item">
+        <h1>Top 5 Crypto's Market Cap</h1>
+        <canvas id="xieChart" width="800" height="400" style="margin-top: 20px; margin-bottom: 50px"></canvas>
+    </div>
+  </div>
+<script>
+    var ctx = document.getElementById("barChart").getContext("2d");
+    var pieChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: {{ labels1|safe}},
+            datasets: [
+                {
+                    data: {{ values1|safe }},
+                    fill: true,
+                    borderColor: "rgb(255,255,255)",
+                    backgroundColor: [
+                    "rgb(255, 87, 122)",
+                    "rgb(38, 150, 228)",
+                    "rgb(255, 150, 68)",
+                    "rgb(52, 184, 183)",
+                    "rgb(255, 200, 88)",
+                    ]
+                }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    });
+    var ctx = document.getElementById("xieChart").getContext("2d");
+    var pieChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: {{ labels2|safe}},
+            datasets: [
+                {
+                    data: {{ values2|safe }},
+                    fill: true,
+                    borderColor: "rgb(255, 255, 255)",
+                    backgroundColor: [
+                    "rgb(255, 87, 122)",
+                    "rgb(38, 150, 228)",
+                    "rgb(255, 150, 68)",
+                    "rgb(52, 184, 183)",
+                    "rgb(255, 200, 88)",
+                    ]
+                }
+            ]
+        },
+        options: {
+            responsive: false
+        }
+    });
+</script>  
+{% endblock %}

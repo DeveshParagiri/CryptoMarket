@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .heading {
+      border: 1px; 
+      padding: 35px 70px;
+    }
+    .red{
+        color: rgb(246, 110, 110);
+    }
+    .green{
+        color: greenyellow;
+    }
+    .blue{
+        color: rgb(48, 124, 255);
+    }
+</style>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('home_page') }}">CryptoHub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home_page') }}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('market_page') }}">Market <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('helpfulinks_page') }}">Helpful Links</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1 class="heading">Cryptocurrencies</h1>
+<div class="row" style="margin-left:75px; margin-right:75px; margin-bottom: 50px">
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col" class="blue">#</th>
+                <th scope="col" class="blue">CryptoCurrency</th>
+                <th scope="col" class="blue">Symbol</th>
+                <th scope="col" class="blue">Price</th>
+                <th scope="col" class="blue">1h</th>
+                <th scope="col" class="blue">24h</th>
+                <th scope="col" class="blue">7d</th>
+                <th scope="col" class="blue">30d</th>
+                <th scope="col" class="blue">60d</th>
+                <th scope="col" class="blue">90d</th>
+                <th scope="col" class="blue">Market Cap</th>
+                <th scope="col" class="blue">Circulating Supply</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td class="blue">{{item.rank}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.symbol}}</td>
+                    <td>${{item.price}}</td>
+                    <td class="{{'green' if item.percentage_change_1h_int > 0 else 'red'}}">{{ item.percentage_change_1h_str }}%</td>
+                    <td class="{{'green' if item.percentage_change_24h_int > 0 else 'red'}}">{{ item.percentage_change_24h_str }}%</td>
+                    <td class="{{'green' if item.percentage_change_7d_int > 0 else 'red'}}">{{ item.percentage_change_7d_str }}%</td>
+                    <td class="{{'green' if item.percentage_change_30d_int > 0 else 'red'}}">{{ item.percentage_change_30d_str }}%</td>
+                    <td class="{{'green' if item.percentage_change_60d_int > 0 else 'red'}}">{{ item.percentage_change_60d_str }}%</td>
+                    <td class="{{'green' if item.percentage_change_90d_int > 0 else 'red'}}">{{ item.percentage_change_90d_str }}%</td>
+                    <td>${{item.market_cap_str}}B</td>
+                    <td>{{item.circulating_supply}}</td>
+                </tr>
+            {% endfor %}
+    {% endblock %}
+        </tbody>
+    </table>
+
+</div>
